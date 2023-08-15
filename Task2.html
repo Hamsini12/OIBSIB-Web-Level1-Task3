@@ -1,0 +1,193 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TemperatureConverter</title>
+  </head>  
+  <style>
+    video{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      min-width:100%;
+      min-height:100%;
+    }
+    .video-container{
+      width:300px;
+      height:300px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+    }
+    .header{
+      position:fixed;
+      width:100%;
+      margin-top:350px;
+      left:0;
+      right:0;
+    }
+    p{
+      text-align:center;
+      font-family:Gabriola,Times,serif;
+      text-transform:uppercase;
+      font-size:4em;
+      letter-spacing:3px;
+      background: linear-gradient(900deg,#2196f3,#2196f3,#FDB5AB,#FDB5AB);
+      background-repeat:no-repeat;
+      background-size:90%;
+      animation:animate 3s linear infinite;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:rgba(255,255,255,0);
+    }
+    @keyframes animate{
+      0% {
+        background-position:-500%;
+      }
+      100% {
+        background-position:900%;
+      }
+    }
+    .container{
+      width:35rem;
+      height:28rem;
+      margin:0 auto;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      border:1.5px solid #FDB5AB;
+      border-radius:64px 96px 128px 32px;
+    }
+    form{
+      flex-direction:column;
+    }
+    label{
+      color:#2196f3;
+      font-size:1.5em;
+    }
+    select{
+      width:20rem;
+      height:2.5rem;
+      font-size:1em;
+      color:#2196f3;
+      border-radius:10px;
+      border:0.5px solid #FDB5AB;
+      background-color:transparent;
+    }
+    select option{
+      color:black;
+      background-color:transparent;
+    }
+    input[type=number]{
+      width:20rem;
+      height:2.5rem;
+      border-radius:7px;
+      border:0.5px solid #FDB5AB;
+      background-color:transparent;
+      font-size:1em;
+      color:#2196f3;
+    }
+    input[type=button],input[type=reset]{
+      width:10rem;
+      height:3rem;
+      bottom:10px;
+      border-radius:10px;
+      border:none;
+      background-color:transparent;
+      color:#2196f3;
+      font-size:1em;
+    }
+    input[type=button]:hover,input[type=reset]:hover{
+      border:0.2px solid #FDB5AB;
+    }
+  </style>
+<body>
+  <div class="video-container">
+    <video playsinline autoplay muted loop>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-smoke-effect-over-black-background-1967-large.mp4">
+    </video>
+    <div class="header">
+      <p>Temperature Converter</p>
+      <div class="container">
+        <form>
+          <label>Temperature:</label><br><br>
+          <input type="number" id="temp" placeholder=" Enter a number">
+          <br><br>
+          <label>Convert from:</label><br><br>
+          <select id="cf" name="cf">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+          </select>
+          <br><br>
+          <label>Convert to:</label><br><br>
+          <select id="ct" name="ct">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+          </select>
+          <br><br><br>
+          <input type="button" value="Convert" onclick="convertTemperature()">
+          <input type="reset" value="Reset">
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    function convertTemperature(){
+      var from=document.getElementById("cf").value;
+      var to = document.getElementById("ct").value;
+      var t =document.getElementById("temp").value;
+      var r;
+      if(from === "celsius")
+      {
+      if(to === "fahrenheit"){
+        r=(t*1.8)+32;
+        alert("The converted temperature is"+r+"°F");
+      }
+      else if(to === "kelvin"){
+        r=t+273.15;
+        alert("The converted temperature is"+r+"K");
+      }
+      else{
+        r=t;
+        alert("The converted temeperature is"+r+"°C");
+      } 
+      }
+      else if(from === "fahrenheit")
+      {
+      if(to === "celsius"){
+        r=(t-32)/(1.8);
+        alert("The converted temperature is "+r+"°C");
+      } 
+      else if(to ==="kelvin"){
+        r=(t+459.67)*(5/9);
+        alert("The converted temperature is "+r+"K");
+      }
+      else{
+        r=t;
+        alert("The converted temeperature is"+r+"°F");
+      }
+    }
+    else if(from === "kelvin")
+    {
+      if(to === "celsius")
+      {
+        r=t-273.15;
+        alert("The converted temperature is"+r+"°C");
+      }
+      else if(to === "fahrenheit")
+      {
+        r=(t*(9/5))-459.67;
+        alert("The converted temeperature is"+r+"°F");
+      }
+      else{
+        r=t;
+        alert("The converted temeperature is"+r+"°K");
+      }
+    }
+    }
+  </script>
+</body>
+</html>
